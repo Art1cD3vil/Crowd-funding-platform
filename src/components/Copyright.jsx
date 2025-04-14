@@ -4,7 +4,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary">
       {"Copyright © "}
       <Link color="inherit" href="#">
-        CrowdHelp
+        Crowd Funding Platform
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

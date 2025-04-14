@@ -30,9 +30,9 @@ export default function Footer() {
       >
         <Container maxWidth="sm">
           <Typography variant="body1">
-            CrowdHelp platform - [ONLY] Core functionalities done. 🚧.
+            Crowd Funding Platform
           </Typography>
-          <Copyright />
+          
         </Container>
       </Box>
     </Box>

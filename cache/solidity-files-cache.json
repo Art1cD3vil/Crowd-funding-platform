@@ -43,6 +43,50 @@
         "Campaign",
         "CrowdHelp"
       ]
+    },
+    "C:\\CrowdHelp-Blockchain-based-crowdfunding-platform\\contracts\\CrowdHelp.sol": {
+      "lastModificationDate": 1744603585664,
+      "contentHash": "f68aca6874c3edc1fc45b223eca272e0",
+      "sourceName": "contracts/CrowdHelp.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000
+          },
+          "viaIR": true,
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Campaign",
+        "CrowdHelp"
+      ]
     }
   }
 }

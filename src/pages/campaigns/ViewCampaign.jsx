@@ -149,7 +149,7 @@ function ViewCampaign() {
     try {
       const campaign = Campaign(campaignData.id); // get the campaign
       const accounts = await web3.eth.getAccounts(); // backer account..
-      await campaign.methods.abortCampaignAndRefund().send({
+      await campaign.methods.abortCampaignAndRefund(data.campaignAbortReason).send({
         from: accounts[0],
       });
 
@@ -262,12 +262,12 @@ function ViewCampaign() {
                   {campaignData.description}
                 </Typography>
 
-                <Link
+                {/* <Link
                   variant="body2"
-                  href={`https://goerli.etherscan.io/address/${campaignData.id}`}
+                  href={`https://sepolia.etherscan.io/address/${campaignData.id}`}
                 >
-                  View on Goerli Etherscan
-                </Link>
+                  View on Sepolia Etherscan
+                </Link> */}
               </Stack>
             </Container>
             <ShowContributionDetails />
@@ -317,23 +317,30 @@ function ViewCampaign() {
       <>
         <Container
           maxWidth="sm"
-          sx={{ padding: 0.5, backgroundColor: "#fae588", borderRadius: 3 }}
+          sx={{ 
+            padding: 0.5, 
+            backgroundColor: "#FFFFFF", // Changed from #fae588 to white
+            borderRadius: 3,
+            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' // Added subtle shadow for definition
+          }}
         >
-          <Typography variant="h6">Campaign balance</Typography>
-          <Typography variant="caption">
+          <Typography variant="h6" color="#000000" fontWeight="bold">
+            Campaign balance
+          </Typography>
+          <Typography variant="caption" color="#555555">
             Amount stored in smart contract.
           </Typography>
           <LinearProgressWithLabel
             value={(campaignData.ethFunded / campaignData.ethRaised) * 100}
           />
-          <Typography variant="body2">
+          <Typography variant="body2" color="#000000">
             {`${campaignData.ethFunded}`} ETH funded by{" "}
             {`${campaignData.backersCount}`} backers.
           </Typography>
         </Container>
       </>
     );
-  }
+   }
 
   function BecomeBacker() {
     return (
@@ -682,7 +689,9 @@ function ViewCampaign() {
                   <Typography>
                     {campaignData.campaignStatus == "EXPIRED"
                       ? "Campaign has ended successfully..!!"
-                      : "Campign has aborted in between.  <fund raiser's reason here (In next version)>"}
+                      : campaignData.abortReason 
+                        ? `Campaign has been aborted. Reason: ${campaignData.abortReason}`
+                        : "Campaign has been aborted by the creator."}
                   </Typography>
                 </Container>
               </>

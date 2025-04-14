@@ -112,7 +112,7 @@ function NavBar() {
             },
           }}
         >
-          CrowdHelp
+          Crowd Funding Platform
         </Typography>
         <StorefrontIcon
           sx={{

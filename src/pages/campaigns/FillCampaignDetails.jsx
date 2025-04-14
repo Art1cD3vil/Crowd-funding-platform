@@ -221,7 +221,7 @@ function FillCampaignDetails() {
                 justify="center"
                 alignItems="stretch"
               >
-                <Grid item xs={6} spacing={0}>
+                <Grid item xs={6}>
                   <Box display={"flex"} flexDirection="column" gap={2}>
                     <TextField
                       id="title"
@@ -340,7 +340,8 @@ function FillCampaignDetails() {
                     name="walletAddress"
                     label="Wallet Address"
                     fullWidth
-                    value={wallet.account}
+                    value={wallet.account || ""}
+
                     inputProps={{
                       readOnly: "read-only",
                     }}

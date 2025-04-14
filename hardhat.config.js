@@ -4,11 +4,14 @@ require("hardhat-deploy");
 require("@nomicfoundation/hardhat-toolbox");
 
 module.exports = {
-  solidity: "0.8.17",
-  settings: {
-    optimizer: {
-      enabled: true,
-      runs: 1000000,
+  solidity: {
+    version: "0.8.17",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 1000000,
+      },
+      viaIR: true
     },
   },
   mocha: {
@@ -26,6 +29,16 @@ module.exports = {
       chainId: 11155111,
       saveDeployments: true,
     },
+    ganache: {
+      url: "http://127.0.0.1:8545", // default Ganache GUI address and port
+      // Or use "http://127.0.0.1:8545" for ganache-cli
+      accounts: {
+        mnemonic: "diamond error render alter nest side bacon truck genre theory copy fence", // Replace with your Ganache mnemonic
+        count: 10, // Number of accounts to use
+      },
+      chainId: 1337, // Ganache default chain ID
+      saveDeployments: true,
+    }
   },
   namedAccounts: {
     deployer: {

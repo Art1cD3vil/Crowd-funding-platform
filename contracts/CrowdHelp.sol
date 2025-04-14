@@ -5,7 +5,7 @@ contract CrowdHelp{
 
 // events
 event CampaignStarted(
-    address projectContractAddress ,
+    address projectContractAddress,
     address creator,
     uint256 minContribution,
     uint256 projectDeadline,
@@ -76,6 +76,7 @@ contract Campaign{
     string public projectTitle;
     string public projectDes;
     string public bannerUrl;
+    string public abortReason; // New variable to store the abort reason
     State public state = State.ACTIVE; 
 
     // mapping (uint => Contribution) public contributors;      // use indices as address with amountContributed as its values.
@@ -173,10 +174,14 @@ contract Campaign{
         emit AmountCredited(creator, raisedAmount); 
     }
     
-    function abortCampaignAndRefund() public isCreator() payable{
+    function abortCampaignAndRefund(string memory _abortReason) public isCreator() payable{
         // perform validation..
         require(block.timestamp < deadline, 'Campaign cannot be aborted, deadline passed.');
         require(state == State.ACTIVE || state == State.SUCCESS, 'Invalid state. Cannot abort campaign.');
+        
+        // Store the abort reason
+        abortReason = _abortReason;
+        
         // refund money to backers
         for(uint idx=0; idx<noOfContributors; idx++){ // iterate through all addresses of contrdibutors
             contributions[idx].contributor.transfer(contributions[idx].amount);
@@ -204,7 +209,8 @@ contract Campaign{
     State currentState,
     uint256 balance,
     string memory imageUrl,
-    uint256 numBackers
+    uint256 numBackers,
+    string memory reason
     ){
         projectStarter=creator;
         minContribution=minimumContribution;
@@ -218,5 +224,6 @@ contract Campaign{
         balance=address(this).balance;
         imageUrl=bannerUrl;
         numBackers=noOfContributors;
+        reason=abortReason;
     }
 }

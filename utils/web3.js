@@ -2,16 +2,16 @@ import Web3 from "web3";
 
 let web3;
 
-if (typeof window !== "undefined" && typeof window.web3 !== "undefined") {
-  // we are in the browser and meta mask is installed
-  web3 = new Web3(window.web3.currentProvider);
+if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
+  // We are in the browser and MetaMask is running
+  window.ethereum.request({ method: "eth_requestAccounts" });
+  web3 = new Web3(window.ethereum);
 } else {
-  // we are on the server *OR* meta mask is not running
-  // creating our own provider
+  // We are on the server OR the user is not running MetaMask
   const provider = new Web3.providers.HttpProvider(
-    "https://goerli.infura.io/v3/eaf842956c36444c8aaf54163a47e0d2"
+    "http://127.0.0.1:8545" // Ganache GUI
+    // or "http://127.0.0.1:8545" for ganache-cli
   );
-
   web3 = new Web3(provider);
 }
 

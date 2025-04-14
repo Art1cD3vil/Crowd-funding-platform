@@ -76,6 +76,7 @@ function formatSummary(summary, campaignId) {
     campaignStatus: cvtIntStatusToEnum(summary["currentState"]),
     // requestsCount: summary[2],
     backersCount: summary["numBackers"],
+    abortReason: summary["reason"] || "" // Add the abort reason from contract
   };
 
   // return the work did..
