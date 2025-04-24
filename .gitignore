@@ -1,0 +1,21 @@
+# Create a more complete .gitignore file
+cat > .gitignore << EOL
+# Ignore node_modules directory
+node_modules/
+node_modules/*
+**/node_modules/**
+
+# Hardhat files
+cache/
+artifacts/
+
+# Environment variables
+.env
+.env.*
+
+# Build files
+dist/
+build/
+EOL"node_modules/" 
+"cache/" 
+"artifacts/" 
